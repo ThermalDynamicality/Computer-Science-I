@@ -13,24 +13,29 @@ def read_file(file_name: str) -> list[int]:
     of integers representing the distances of buildings.
 
     :param file_name: The file name being loaded.
-    :return: List of Integers for the positions of buildings.
+    :return formatted_list: List of Integers for the positions of buildings.
     """
 
     # Open file and read contents
     with open(file_name, "r") as f:
         _txt_list = f.readlines()
 
-    # Strip \n from lines
-    _txt_list = [i.strip() for i in _txt_list]
+    # Formatting data
+    _formatted_list = []
+    for i in _txt_list:
 
-    # Returns number after the space (after "TEXT ")
-    _txt_list = [i[i.index(" "):] for i in _txt_list]
+        # Strip \n from lines
+        _temp = i.strip()
 
-    # Converts from list of strings to list of integers
-    _txt_list = [int(i) for i in _txt_list]
+        # Split text into [Name, X-position]
+        _temp_list = _temp.split(" ")
+
+        # Append x-position to _formatted_list
+        _x_position = int(_temp_list[1])
+        _formatted_list.append(_x_position)
 
     # Return list of positions
-    return _txt_list
+    return _formatted_list
 
 
 # Avoided using "or" vs "|" because of 3.9 -> 3.10 compatibility
@@ -45,5 +50,5 @@ def sum_distances(positions, location):
     """
     _total_distance = 0
     for i in positions:
-        _total_distance += abs(i + location)
+        _total_distance += abs(i - location)
     return _total_distance
