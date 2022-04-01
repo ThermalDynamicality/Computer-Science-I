@@ -15,7 +15,8 @@ COLORS = {
     'onion': 'purple',
     'pepper': 'green',
     'tomato': 'red',
-    'pork': 'pink'
+    'pork': 'pink',
+    'mushroom': 'tan'
 }
 
 # global constants for drawing

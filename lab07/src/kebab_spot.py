@@ -8,7 +8,7 @@ author: Stanley Goodwin
 
 from dataclasses import dataclass
 from typing import Union
-from food import Food
+from food import Food, veggies_set
 
 
 @dataclass
@@ -39,10 +39,10 @@ def spot_name(spot):
     :param: spot (KebabSpot): the current spot on the skewer
     :return: food name
     """
-    # TODO
+    return spot.item.name
 
 
-def spot_size(spot: KebabSpot):
+def spot_size(spot):
     """
     Return the number of elements from this KebabSpot instance to the end
     of the skewer.
@@ -66,7 +66,15 @@ def spot_has(spot, name):
     :return True if any of the spots hold a Food item that equals the
     name, False otherwise.
     """
-    # TODO
+    exists = False
+    item0 = spot
+    while item0 is not None:
+        if spot_name(item0) == name:
+            exists = True
+            break
+        else:
+            item0 = item0.next
+    return exists
 
 
 def spot_string_em(spot):
@@ -77,4 +85,46 @@ def spot_string_em(spot):
     :return A string containing the names of each of the Food items from
     this spot down.
     """
-    # TODO
+    item0 = spot
+    name_list = []  # I'm using a list here, so I can use .join() for better printing
+    while item0 is not None:
+        temp = spot_name(spot)
+        name_list.append(temp)
+        item0 = item0.next
+    output = "".join(name_list, ", ")
+    print(output)
+
+
+def spot_calories(spot):
+    """
+    Return the number of calories from this KebabSpot instance to the end
+    of the skewer.
+    :param: spot (KebabSpot): the current spot on the skewer
+    :return: the number of calories (int)
+    """
+    total_calories = 0
+    item0 = spot
+    while item0 is not None:
+        food = item0.item
+        calories = food.calories
+        total_calories += calories
+        item0 = item0.next
+    return total_calories
+
+def spot_vegan(spot):
+    """
+    Returns if this KebabSpot instance to the end of the skewer is vegan.
+    :param: spot (KebabSpot): the current spot on the skewer
+    :return: the vegan boolean (bool)
+    """
+    veggies = veggies_set()
+
+    is_vegan = True
+    item0 = spot
+    while item0 is not None:
+        if spot_name(item0) not in veggies:
+            is_vegan = False
+            break
+        else:
+            item0 = item0.next
+    return is_vegan

@@ -8,7 +8,7 @@ author: Stanley Goodwin
 from kebab_graphics import SkewerUI
 from food import food_create
 from kebab_spot import KebabSpot, spot_create, spot_size, spot_name, \
-    spot_has, spot_string_em
+    spot_has, spot_string_em, spot_calories, spot_vegan
 from skewer_exception import SkewerException
 from dataclasses import dataclass
 from typing import Union
@@ -124,3 +124,19 @@ def skewer_string_em(skewer):
     to back, comma separated, and surrounded with square brackets
     """
     return "[" + spot_string_em(skewer.top) + "]"
+
+def skewer_calories(skewer):
+    """
+    Get the calories of the skewer.
+    :param skewer (Skewer): this skewer
+    :return the calories (int)
+    """
+    return spot_calories(skewer.top)
+
+def skewer_vegan(skewer):
+    """
+    Returns if the skewer is vegan.
+    :param skewer (Skewer): this skewer
+    :return the vegan boolean (bool)
+    """
+    return spot_vegan(skewer.top)

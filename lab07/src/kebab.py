@@ -10,7 +10,8 @@ author: Stanley Goodwin
 import sys
 from food import FOODS, food_create
 from skewer import skewer_create, skewer_close, skewer_add, skewer_front, \
-    skewer_remove, skewer_has, skewer_size, skewer_capacity, skewer_string_em
+    skewer_remove, skewer_has, skewer_size, skewer_capacity, skewer_string_em, \
+    skewer_calories, skewer_vegan
 from skewer_exception import SkewerException
 from dataclasses import dataclass
 from typing import Union
@@ -46,6 +47,8 @@ def kebab_usage():
     print("has item - is an item on the skewer?")
     print("quit - exit the program")
     print("status - the capacity and current number of items on the skewer")
+    print("calories - the total calories of the items on the skewer")
+    print("vegan - determines if the items on the skewer are all vegan")
 
 def kebab_create_skewer(kebab, args):
     """
@@ -196,6 +199,31 @@ def kebab_quit(kebab, args):
     print("Goodbye!")
     sys.exit(0)
 
+def kebab_calories(kebab: Kebab, args):
+    """
+    Gets the calories of the entire kebab.
+    :param kebab (Kebab): this kebab
+    :param args: ignored (intentional)
+    :return: None
+    """
+    if kebab.skewer is not None:
+        print(skewer_calories(kebab.skewer))
+    else:
+        print("0 Calories, the skewer is empty.")
+
+def kebab_vegan(kebab: Kebab, args):
+    """
+    Returns if the kebab is vegan or not.
+    :param kebab (Kebab): this kebab
+    :param args: ignored (intentional)
+    :return: None
+    """
+    if kebab.skewer is not None:
+        is_vegan = skewer_vegan(kebab.skewer)
+        print(f"Kebab is {'vegan' if is_vegan else 'not vegan'}")
+    else:
+        print("Kebab is vegan, the skewer is empty.")
+
 # Each valid command is stored in a dictionary as string by key.
 # The corresponding method to call is stored as the value.
 CMDS = {"add": kebab_add,
@@ -207,7 +235,10 @@ CMDS = {"add": kebab_add,
         "status": kebab_status,
         "front": kebab_front,
         "display": kebab_display,
-        "quit": kebab_quit}
+        "quit": kebab_quit,
+        "calories": kebab_calories,
+        "vegan": kebab_vegan
+}
 
 def kebab_main_loop(kebab):
     """
