@@ -108,7 +108,7 @@ def print_poly(lst):
     if term is None:
         return
     else:
-        print(f"{term.coefficient} * x ^ {term.exponent}", end="")
+        print(f"{term.coefficient}x^{term.exponent}", end="")
         term = term.next
 
     # For the rest of the polynomial
@@ -118,9 +118,8 @@ def print_poly(lst):
         else:
             print(" + ", end="")
 
-        print(f"{abs(term.coefficient)} * x ^ {term.exponent}", end="")
+        print(f"{abs(term.coefficient)}*x^{term.exponent}", end="")
         term = term.next
-        first_term = False
 
     # Finish with print line
     print()
