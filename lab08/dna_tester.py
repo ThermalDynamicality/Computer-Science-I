@@ -53,7 +53,8 @@ def test2():
     dna_seq = immutable_list.insert_before_index(dna_seq, 'G', 2)
     dna_str3 = dna.convert_to_string(dna_seq)
     print(dna_str3 == "TAG")
-    
+
+
 def test3():
     """
     Tests function to convert a DNA linked Node
@@ -215,12 +216,10 @@ def test7():
 
     dna_seq1 = immutable_list.insert_before_index(dna_seq1, "A", 0)
     dna_seq3 = dna.insertion(dna_seq1, dna_seq2, 0)
-    print(dna_seq3.value == "A" \
-          and dna.length_rec(dna_seq3) == 1, end=" ")
+    print(dna_seq3.value == "A" and dna.length_rec(dna_seq3) == 1, end=" ")
 
     dna_seq3 = dna.insertion(dna_seq1, dna_seq2, 1)
-    print(dna_seq3.value == "A" \
-          and dna.length_rec(dna_seq3) == 1, end=" ")
+    print(dna_seq3.value == "A" and dna.length_rec(dna_seq3) == 1, end=" ")
 
     dna_seq2 = immutable_list.insert_before_index(dna_seq2, "C", 0)
     dna_seq3 = dna.insertion(dna_seq1, dna_seq2, 0)

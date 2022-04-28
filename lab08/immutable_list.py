@@ -6,6 +6,7 @@ author: RIT CS
 
 from node_types import FrozenNode
 
+
 def to_str( head ):
     """
     to_str: FrozenNode -> str
@@ -19,6 +20,7 @@ def to_str( head ):
     result += _to_str_rec( head )
     result += " ]"
     return result
+
 
 def _to_str_rec( head ):
     """
@@ -50,6 +52,7 @@ def append( head, new_value ):
     else:
         return FrozenNode( head.value, append( head.next, new_value ) )
 
+
 def insert_before_index( head, new_value, index ):
     """
     insert_before_index: FrozenNode, Any, int -> FrozenNode
@@ -79,6 +82,7 @@ def insert_before_index( head, new_value, index ):
             insert_before_index( head.next, new_value, index - 1 )
         )
 
+
 def remove_value( head, value ):
     """
     FrozenNode, Any -> FrozenNode
@@ -98,6 +102,7 @@ def remove_value( head, value ):
     else:
         return FrozenNode( head.value, remove_value( head.next, value ) )
 
+
 def to_str_acc( head ):
     """
     to_str_acc: FrozenNode -> str
@@ -107,6 +112,7 @@ def to_str_acc( head ):
     :return: The entire sequence as a legible string, pattern "[a,b,c]"
     """
     return "[" + to_str_acc_rec( head, "" ) + " ]"
+
 
 def to_str_acc_rec( head, acc ):
     """
@@ -119,7 +125,6 @@ def to_str_acc_rec( head, acc ):
         if head.next is not None:
             suffix += ","
         return to_str_acc_rec(head.next, acc + suffix)
-
 
 
 def remove_at(index, head):
@@ -196,4 +201,3 @@ def test():
 if __name__ == '__main__':
     test_to_str()
     test()
-
